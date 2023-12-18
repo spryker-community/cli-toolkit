@@ -1,0 +1,32 @@
+#!/usr/bin/env php
+<?php
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use SprykerCommunity\Toolkit\Release\Commands\PackagesReleaseCommand;
+use SprykerCommunity\Toolkit\Release\Commands\PrepareDemoCommand;
+use SprykerCommunity\Toolkit\Shared\Commands\ContainerDumpCommand;
+use SprykerCommunity\Toolkit\Translator\Commands\YvesTranslationCommand;
+use SprykerCommunity\Toolkit\Translator\Commands\ZedTranslationCommand;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Dotenv\Dotenv;
+
+(new Dotenv())->bootEnv(dirname(__DIR__, 1) . '/.env');
+
+$container = include __DIR__ . '/../src/container.php';
+$container->compile(true);
+
+$commands = array(
+    new YvesTranslationCommand(),
+    new ZedTranslationCommand(),
+    new ContainerDumpCommand(),
+);
+
+$app = new Application('Spryker Toolkit');
+foreach ($commands as $command) {
+    if (method_exists($command, 'setContainer')) {
+        $command->setContainer($container);
+    }
+    $app->add($command);
+}
+
+$app->run();

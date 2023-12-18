@@ -1,0 +1,16 @@
+includes:
+    - vendor/phpstan/phpstan-symfony/extension.neon
+
+parameters:
+    level: 8
+    reportUnmatchedIgnoredErrors: false
+    checkGenericClassInNonGenericObjectType: false
+    treatPhpDocTypesAsCertain: false
+    bootstrapFiles:
+        - phpstan-bootstrap.php
+    ignoreErrors:
+        - '#Call to an undefined method Codebase\\Application\\Dto\\CodebaseInterface#'
+        - '#\$nodes of method PhpParser\\NodeTraverser::traverse\(\) expects array<PhpParser\\Node>, array<PhpParser\\Node\\Stmt>\|null given.#'
+        - '#\$simpleXmlElement of method Codebase\\Infrastructure\\SourceParser\\Parser\\XmlParser::getSimpleXmlTransferElements\(\) expects SimpleXMLElement, array<SimpleXMLElement>\|SimpleXMLElement given.#'
+    symfony:
+        container_xml_path: var/cache/container.xml
