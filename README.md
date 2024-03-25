@@ -31,7 +31,7 @@
 ### Git clone
 
 ```bash
-git clone https://github.com/spyker-community/spryker-toolkit && cd spryker-toolkit
+git clone https://github.com/spryker-community/spryker-toolkit && cd spryker-toolkit
 bin/spryker-toolkit
 ```
 
