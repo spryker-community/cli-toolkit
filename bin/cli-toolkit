@@ -2,11 +2,11 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use SprykerCommunity\Toolkit\Release\Commands\PackagesReleaseCommand;
-use SprykerCommunity\Toolkit\Release\Commands\PrepareDemoCommand;
-use SprykerCommunity\Toolkit\Shared\Commands\ContainerDumpCommand;
-use SprykerCommunity\Toolkit\Translator\Commands\YvesTranslationCommand;
-use SprykerCommunity\Toolkit\Translator\Commands\ZedTranslationCommand;
+use SprykerCommunity\CliToolkit\Release\Commands\PackagesReleaseCommand;
+use SprykerCommunity\CliToolkit\Release\Commands\PrepareDemoCommand;
+use SprykerCommunity\CliToolkit\Shared\Commands\ContainerDumpCommand;
+use SprykerCommunity\CliToolkit\Translator\Commands\YvesTranslationCommand;
+use SprykerCommunity\CliToolkit\Translator\Commands\ZedTranslationCommand;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Dotenv\Dotenv;
 

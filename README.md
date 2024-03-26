@@ -1,5 +1,5 @@
 <h1 align="center">
-  Spryker CLI Toolkit
+  Spryker Community CLI Toolkit
   <br>
 </h1>
 
@@ -12,8 +12,8 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/spryker-community/spryker-toolkit/actions?query=workflow%3ACI+branch%3Amain">
-        <img src="https://github.com/spryker-community/spryker-toolkit/workflows/CI/badge.svg?branch=main"/>
+    <a href="https://github.com/spryker-community/cli-toolkit/actions?query=workflow%3ACI+branch%3Amain">
+        <img src="https://github.com/spryker-community/cli-toolkit/workflows/CI/badge.svg?branch=main"/>
     </a>
     <a href="https://packagist.org/packages/spryker-community/sprkyer-translations">
         <img src="https://img.shields.io/packagist/v/spryker-community/sprkyer-translations.svg?style=flat-square">
@@ -31,15 +31,15 @@
 ### Git clone
 
 ```bash
-git clone https://github.com/spryker-community/spryker-toolkit && cd spryker-toolkit
-bin/spryker-toolkit
+git clone https://github.com/spryker-community/cli-toolkit && cd cli-toolkit
+bin/cli-toolkit
 ```
 
 ### Composer 
 
 ```bash
-composer require --dev spryker-community/spryker-toolkit
-vendor/bin/spryker-toolkit
+composer require --dev spryker-community/cli-toolkit
+vendor/bin/cli-toolkit
 ```
 
 ## Usage
@@ -47,7 +47,7 @@ vendor/bin/spryker-toolkit
 You can see all the available commands by executing:
 
 ```bash
-bin/spryker-toolkit --help
+bin/cli-toolkit --help
 ```
 
 ### Prerequisites
@@ -62,14 +62,14 @@ cp .env.dist .env
 
 2. Add your own auth credentials for the service you are using:
 ```
-SPRYKER_TOOLKIT_DEEPL_API_AUTH_KEY="your_deepl_api_token"
-SPRYKER_TOOLKIT_CHATGPT_API_AUTH_KEY="your_chatgpt_api_token"
+CLI_TOOLKIT_DEEPL_API_AUTH_KEY="your_deepl_api_token"
+CLI_TOOLKIT_CHATGPT_API_AUTH_KEY="your_chatgpt_api_token"
 ```
 
 ### Generate translations for the Spryker Yves storefront
 
 ```bash
-bin/spryker-toolkit translation:yves:generate
+bin/cli-toolkit translation:yves:generate
 ```
 
 #### Arguments
@@ -86,19 +86,19 @@ bin/spryker-toolkit translation:yves:generate
 1. Generate missing translations Yves glossary to Spanish from Spain (es_ES) by ChatGPT.
 
 ```bash
-bin/spryker-toolkit translation:yves:generate es_ES --working-dir=../b2b-demo-marketplace- --translation-engine=chatgpt
+bin/cli-toolkit translation:yves:generate es_ES --working-dir=../b2b-demo-marketplace- --translation-engine=chatgpt
 ```
 
 2. Generate missing translations Yves glossary to Spanish from Spain (es_ES) and French from France by DeepL.
 
 ```bash
-bin/spryker-toolkit translation:yves:generate es_ES fr_FR --working-dir=../b2b-demo-marketplace --translation-engine=deepl
+bin/cli-toolkit translation:yves:generate es_ES fr_FR --working-dir=../b2b-demo-marketplace --translation-engine=deepl
 ```
 
 ### Generate translations for the Spryker Zed backoffice
 
 ```bash
-bin/spryker-toolkit translation:yves:generate
+bin/cli-toolkit translation:yves:generate
 ```
 
 #### Arguments
@@ -115,13 +115,13 @@ bin/spryker-toolkit translation:yves:generate
 1. Generate missing translations Zed glossary to Spanish from Spain (es_ES) by ChatGPT.
 
 ```bash
-bin/spryker-toolkit translation:zed:generate es_ES --working-dir=../b2b-demo-marketplace --translation-engine=chatgpt
+bin/cli-toolkit translation:zed:generate es_ES --working-dir=../b2b-demo-marketplace --translation-engine=chatgpt
 ```
 
 2. Generate missing translations Zed glossary to Spanish from Spain (es_ES) and French from France by DeepL.
 
 ```bash
-bin/spryker-toolkit translation:zed:generate es_ES fr_FR --working-dir=../b2b-demo-marketplace --translation-engine=deepl
+bin/cli-toolkit translation:zed:generate es_ES fr_FR --working-dir=../b2b-demo-marketplace --translation-engine=deepl
 ```
 
 ## Contributing

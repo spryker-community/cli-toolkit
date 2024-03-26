@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace SprykerCommunity\Toolkit\Shared\Container;
+namespace SprykerCommunity\CliToolKit\Shared\Container;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 

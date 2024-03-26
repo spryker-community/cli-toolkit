@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace SprykerCommunity\Toolkit\Translator\TranslatorEngine;
+namespace SprykerCommunity\CliToolKit\Translator\TranslatorEngine;
 
 use DeepL\DeepLException;
 use DeepL\Translator;
-use SprykerCommunity\Toolkit\Translator\Exception\TranslatorException;
+use SprykerCommunity\CliToolKit\Translator\Exception\TranslatorException;
 
 class DeepLTranslatorEngine implements TranslatorEngineInterface
 {
@@ -23,7 +23,7 @@ class DeepLTranslatorEngine implements TranslatorEngineInterface
     /**
      * @var string
      */
-    public const SPRYKER_TOOLKIT_DEEPL_API_AUTH_KEY = 'SPRYKER_TOOLKIT_DEEPL_API_AUTH_KEY';
+    public const CLI_TOOLKIT_DEEPL_API_AUTH_KEY = 'CLI_TOOLKIT_DEEPL_API_AUTH_KEY';
 
     protected Translator $translator;
 
@@ -40,7 +40,7 @@ class DeepLTranslatorEngine implements TranslatorEngineInterface
      * @param string $targetLang
      * @param string $sourceLang
      *
-     * @throws \SprykerCommunity\Toolkit\Translator\Exception\TranslatorException
+     * @throws \SprykerCommunity\CliToolKit\Translator\Exception\TranslatorException
      *
      * @return string
      */

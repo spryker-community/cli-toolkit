@@ -7,15 +7,15 @@
 
 declare(strict_types=1);
 
-namespace SprykerCommunity\Toolkit\Translator;
+namespace SprykerCommunity\CliToolKit\Translator;
 
 use League\Csv\Exception;
 use League\Csv\Reader;
 use League\Csv\Statement;
 use League\Csv\Writer;
 use Psr\Log\LoggerInterface;
-use SprykerCommunity\Toolkit\Shared\Output\OutputAwareTrait;
-use SprykerCommunity\Toolkit\Translator\TranslatorEngine\TranslatorEngineInterface;
+use SprykerCommunity\CliToolKit\Shared\Output\OutputAwareTrait;
+use SprykerCommunity\CliToolKit\Translator\TranslatorEngine\TranslatorEngineInterface;
 use Throwable;
 
 abstract class AbstractYvesTranslator
@@ -23,7 +23,7 @@ abstract class AbstractYvesTranslator
     use OutputAwareTrait;
 
     /**
-     * @var \SprykerCommunity\Toolkit\Translator\TranslatorEngine\TranslatorEngineInterface
+     * @var \SprykerCommunity\CliToolKit\Translator\TranslatorEngine\TranslatorEngineInterface
      */
     protected TranslatorEngineInterface $translator;
 
@@ -50,7 +50,7 @@ abstract class AbstractYvesTranslator
     private LoggerInterface $logger;
 
     /**
-     * @param \SprykerCommunity\Toolkit\Translator\TranslatorEngine\TranslatorEngineInterface $translator
+     * @param \SprykerCommunity\CliToolKit\Translator\TranslatorEngine\TranslatorEngineInterface $translator
      * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(TranslatorEngineInterface $translator, LoggerInterface $logger)
@@ -103,7 +103,7 @@ abstract class AbstractYvesTranslator
      *
      * @throws \League\Csv\Exception
      *
-     * @return array<string|int, \SprykerCommunity\Toolkit\Translator\TranslationRequest>
+     * @return array<string|int, \SprykerCommunity\CliToolKit\Translator\TranslationRequest>
      */
     public function getYvesRecordsForTranslation(string $filePath, string $locale): array
     {
@@ -166,11 +166,11 @@ abstract class AbstractYvesTranslator
     }
 
     /**
-     * @param \SprykerCommunity\Toolkit\Translator\TranslationRequest $value
+     * @param \SprykerCommunity\CliToolKit\Translator\TranslationRequest $value
      * @param string $translation
      * @param string $targetLocale
      *
-     * @return \SprykerCommunity\Toolkit\Translator\TranslationResponse
+     * @return \SprykerCommunity\CliToolKit\Translator\TranslationResponse
      */
     protected function prepareTranslatedRecords(TranslationRequest $value, string $translation, string $targetLocale): TranslationResponse
     {
@@ -212,7 +212,7 @@ abstract class AbstractYvesTranslator
 
     /**
      * @param string $directory
-     * @param iterable<\SprykerCommunity\Toolkit\Translator\TranslationResponse> $records
+     * @param iterable<\SprykerCommunity\CliToolKit\Translator\TranslationResponse> $records
      *
      * @return void
      */
@@ -268,7 +268,7 @@ abstract class AbstractYvesTranslator
     }
 
     /**
-     * @param array<string|int, \SprykerCommunity\Toolkit\Translator\TranslationRequest> $records
+     * @param array<string|int, \SprykerCommunity\CliToolKit\Translator\TranslationRequest> $records
      * @param string $targetLocale
      * @param string $directory
      *
@@ -280,6 +280,8 @@ abstract class AbstractYvesTranslator
     {
         foreach ($records as $record) {
             $retry = 0;
+            $translatedRecord = null;
+
             do {
                 try {
                     $translation = $this->translator->translate(
@@ -311,6 +313,11 @@ abstract class AbstractYvesTranslator
                     throw $e;
                 }
             } while ($retry < static::MAX_RETRIES);
+
+            if (!$translatedRecord) {
+                continue;
+            }
+
             $this->addTranslatedRecords($directory, [$translatedRecord]);
         }
     }

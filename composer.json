@@ -1,12 +1,12 @@
 {
-    "name": "spryker-community/spryker-toolkit",
-    "description": "The Spryker Toolkit",
+    "name": "spryker-community/cli-toolkit",
+    "description": "The Spryker Community Toolkit",
     "type": "library",
     "license": "MIT",
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "SprykerCommunity\\Toolkit\\": "src"
+            "SprykerCommunity\\CliToolkit\\": "src"
         },
         "classmap": ["src"]
     },

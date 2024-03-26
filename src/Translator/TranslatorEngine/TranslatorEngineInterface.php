@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace SprykerCommunity\Toolkit\Translator\TranslatorEngine;
+namespace SprykerCommunity\CliToolKit\Translator\TranslatorEngine;
 
 interface TranslatorEngineInterface
 {

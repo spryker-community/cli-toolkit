@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace SprykerCommunity\Toolkit\Shared\Output;
+namespace SprykerCommunity\CliToolKit\Shared\Output;
 
 use Symfony\Component\Console\Output\OutputInterface;
 

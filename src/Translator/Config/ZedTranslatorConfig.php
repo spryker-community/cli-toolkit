@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace SprykerCommunity\Toolkit\Translator\Config;
+namespace SprykerCommunity\CliToolKit\Translator\Config;
 
 class ZedTranslatorConfig
 {

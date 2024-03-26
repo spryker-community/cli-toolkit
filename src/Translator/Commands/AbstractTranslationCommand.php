@@ -7,12 +7,12 @@
 
 declare(strict_types=1);
 
-namespace SprykerCommunity\Toolkit\Translator\Commands;
+namespace SprykerCommunity\CliToolKit\Translator\Commands;
 
-use SprykerCommunity\Toolkit\Shared\Container\ContainerAwareTrait;
-use SprykerCommunity\Toolkit\Translator\TranslatorEngine\ChatGptTranslatorEngine;
-use SprykerCommunity\Toolkit\Translator\TranslatorEngine\DeepLTranslatorEngine;
-use SprykerCommunity\Toolkit\Translator\TranslatorEngine\TranslatorEngineInterface;
+use SprykerCommunity\CliToolKit\Shared\Container\ContainerAwareTrait;
+use SprykerCommunity\CliToolKit\Translator\TranslatorEngine\ChatGptTranslatorEngine;
+use SprykerCommunity\CliToolKit\Translator\TranslatorEngine\DeepLTranslatorEngine;
+use SprykerCommunity\CliToolKit\Translator\TranslatorEngine\TranslatorEngineInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -60,7 +60,7 @@ abstract class AbstractTranslationCommand extends Command
     protected array $locales;
 
     /**
-     * @var \SprykerCommunity\Toolkit\Translator\TranslatorEngine\TranslatorEngineInterface
+     * @var \SprykerCommunity\CliToolKit\Translator\TranslatorEngine\TranslatorEngineInterface
      */
     protected TranslatorEngineInterface $translationEngine;
 

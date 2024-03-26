@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace SprykerCommunity\Toolkit\Translator;
+namespace SprykerCommunity\CliToolKit\Translator;
 
 class CmsBlockTranslator extends AbstractYvesTranslator
 {
