@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace SprykerCommunity\Toolkit\Translator;
+namespace SprykerCommunity\CliToolKit\Translator;
 
 use League\Csv\Exception;
 use League\Csv\Reader;
@@ -18,7 +18,7 @@ class GlossaryTranslator extends AbstractYvesTranslator
 {
     /**
      * @param string $directory
-     * @param iterable<\SprykerCommunity\Toolkit\Translator\TranslationResponse> $records
+     * @param iterable<\SprykerCommunity\CliToolKit\Translator\TranslationResponse> $records
      *
      * @return void
      */
@@ -47,7 +47,7 @@ class GlossaryTranslator extends AbstractYvesTranslator
      *
      * @throws \League\Csv\Exception
      *
-     * @return array<string|int, \SprykerCommunity\Toolkit\Translator\TranslationRequest>
+     * @return array<string|int, \SprykerCommunity\CliToolKit\Translator\TranslationRequest>
      */
     public function getYvesRecordsForTranslation(string $filePath, string $locale): array
     {
@@ -89,11 +89,11 @@ class GlossaryTranslator extends AbstractYvesTranslator
     }
 
     /**
-     * @param \SprykerCommunity\Toolkit\Translator\TranslationRequest $value
+     * @param \SprykerCommunity\CliToolKit\Translator\TranslationRequest $value
      * @param string $translation
      * @param string $targetLocale
      *
-     * @return \SprykerCommunity\Toolkit\Translator\TranslationResponse
+     * @return \SprykerCommunity\CliToolKit\Translator\TranslationResponse
      */
     protected function prepareTranslatedRecords(TranslationRequest $value, string $translation, string $targetLocale): TranslationResponse
     {

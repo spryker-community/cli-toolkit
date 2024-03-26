@@ -7,25 +7,25 @@
 
 declare(strict_types=1);
 
-namespace SprykerCommunity\Toolkit\Translator\Commands;
+namespace SprykerCommunity\CliToolKit\Translator\Commands;
 
 use Monolog\Logger;
-use SprykerCommunity\Toolkit\Translator\CategoryTranslator;
-use SprykerCommunity\Toolkit\Translator\CmsBlockTranslator;
-use SprykerCommunity\Toolkit\Translator\CmsPageTranslator;
-use SprykerCommunity\Toolkit\Translator\ContentBannerTranslator;
-use SprykerCommunity\Toolkit\Translator\Exception\TranslatorException;
-use SprykerCommunity\Toolkit\Translator\GlossaryTranslator;
-use SprykerCommunity\Toolkit\Translator\MerchantProfileTranslator;
-use SprykerCommunity\Toolkit\Translator\NavigationNodeCategoryTranslator;
-use SprykerCommunity\Toolkit\Translator\ProductAbstractTranslator;
-use SprykerCommunity\Toolkit\Translator\ProductConcreteTranslator;
-use SprykerCommunity\Toolkit\Translator\ProductDiscontinuedTranslator;
-use SprykerCommunity\Toolkit\Translator\ProductLabelTranslator;
-use SprykerCommunity\Toolkit\Translator\ProductManagementAttributeTranslator;
-use SprykerCommunity\Toolkit\Translator\ProductOptionTranslator;
-use SprykerCommunity\Toolkit\Translator\ProductSearchAttributeTranslator;
-use SprykerCommunity\Toolkit\Translator\ProductSetTranslator;
+use SprykerCommunity\CliToolKit\Translator\CategoryTranslator;
+use SprykerCommunity\CliToolKit\Translator\CmsBlockTranslator;
+use SprykerCommunity\CliToolKit\Translator\CmsPageTranslator;
+use SprykerCommunity\CliToolKit\Translator\ContentBannerTranslator;
+use SprykerCommunity\CliToolKit\Translator\Exception\TranslatorException;
+use SprykerCommunity\CliToolKit\Translator\GlossaryTranslator;
+use SprykerCommunity\CliToolKit\Translator\MerchantProfileTranslator;
+use SprykerCommunity\CliToolKit\Translator\NavigationNodeCategoryTranslator;
+use SprykerCommunity\CliToolKit\Translator\ProductAbstractTranslator;
+use SprykerCommunity\CliToolKit\Translator\ProductConcreteTranslator;
+use SprykerCommunity\CliToolKit\Translator\ProductDiscontinuedTranslator;
+use SprykerCommunity\CliToolKit\Translator\ProductLabelTranslator;
+use SprykerCommunity\CliToolKit\Translator\ProductManagementAttributeTranslator;
+use SprykerCommunity\CliToolKit\Translator\ProductOptionTranslator;
+use SprykerCommunity\CliToolKit\Translator\ProductSearchAttributeTranslator;
+use SprykerCommunity\CliToolKit\Translator\ProductSetTranslator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -69,7 +69,7 @@ class YvesTranslationCommand extends AbstractTranslationCommand
     }
 
     /**
-     * @return array<\SprykerCommunity\Toolkit\Translator\AbstractYvesTranslator>
+     * @return array<\SprykerCommunity\CliToolKit\Translator\AbstractYvesTranslator>
      */
     protected function getTranslators(): array
     {

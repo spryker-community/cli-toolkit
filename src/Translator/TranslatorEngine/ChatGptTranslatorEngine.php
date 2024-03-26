@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace SprykerCommunity\Toolkit\Translator\TranslatorEngine;
+namespace SprykerCommunity\CliToolKit\Translator\TranslatorEngine;
 
 use Locale;
 use OpenAI;
@@ -19,7 +19,7 @@ class ChatGptTranslatorEngine implements TranslatorEngineInterface
     /**
      * @var string
      */
-    public const SPRYKER_TOOLKIT_CHATGPT_API_AUTH_KEY = 'SPRYKER_TOOLKIT_CHATGPT_API_AUTH_KEY';
+    public const CLI_TOOLKIT_CHATGPT_API_AUTH_KEY = 'CLI_TOOLKIT_CHATGPT_API_AUTH_KEY';
 
     /**
      * @var string
@@ -29,7 +29,7 @@ class ChatGptTranslatorEngine implements TranslatorEngineInterface
     /**
      * @var string
      */
-    protected const CHATGPT_PROMPT = 'Support me in translating %s texts to %s for an online shop, ensuring native speaker fluency. Generate accurate and contextually fitting translations to enhance the user experience. The texts to be translated may contain URLs, URL paths, HTML, unicode characters or some word enclosed by the character "%%", please don\'t translate them. If the text only contains a relative URL starting by /%s/ please replace it by /%s/. Do not split translations for HTML <p> elements. If unable to translate, provide the original text between ### and ###. IMPORTANT: ONLY RETURN THE TRANSLATED TEXT AND NOTHING ELSE.';
+    protected const CHATGPT_PROMPT = 'Support me in translating %s texts to %s for an online shop, ensuring native speaker fluency. Generate accurate and contextually fitting translations to enhance the user experience. The texts to be translated may contain URLs, URL paths, HTML, unicode characters or some word enclosed by the character "%%", please don\'t translate them. If the text only contains a relative URL starting by /%s/ please replace it by /%s/. Do not split translations for HTML <p> elements. IMPORTANT: ONLY RETURN THE TRANSLATED TEXT AND NOTHING ELSE.';
 
     /**
      * @var string
@@ -107,7 +107,11 @@ class ChatGptTranslatorEngine implements TranslatorEngineInterface
             ],
         ]);
 
-        $this->cache[$targetLang][$text] = trim($result->choices[0]->message->content ?? '');
+        $matches = [];
+        $translation = trim($result->choices[0]->message->content ?? '');
+        $translation = $this->sanitizeOutput($translation);
+
+        $this->cache[$targetLang][$text] = $translation;
 
         return $this->cache[$targetLang][$text];
     }
@@ -118,5 +122,22 @@ class ChatGptTranslatorEngine implements TranslatorEngineInterface
     public function getDescription(): string
     {
         return static::CHATGPT_ENGINE;
+    }
+
+    /**
+     * @param string $output
+     *
+     * @return string
+     */
+    private function sanitizeOutput(string $output): string
+    {
+        preg_replace([
+            '/\\\\n###/',
+            '/###Text:/',
+            '/###Translation:/',
+            '/\\n###/',
+        ], '', $output) ?? '';
+
+        return $output;
     }
 }

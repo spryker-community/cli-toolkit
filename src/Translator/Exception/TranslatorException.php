@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace SprykerCommunity\Toolkit\Translator\Exception;
+namespace SprykerCommunity\CliToolKit\Translator\Exception;
 
 use RuntimeException;
 

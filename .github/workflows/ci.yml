@@ -62,7 +62,7 @@ jobs:
           fi
 
       - name: Warmup
-        run: ./bin/spryker-toolkit container:dump
+        run: ./bin/cli-toolkit container:dump
 
       - name: PHPStan checks
         run: composer stan

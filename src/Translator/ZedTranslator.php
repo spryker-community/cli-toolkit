@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace SprykerCommunity\Toolkit\Translator;
+namespace SprykerCommunity\CliToolKit\Translator;
 
 use Exception;
 use League\Csv\Reader;
@@ -15,11 +15,11 @@ use League\Csv\Statement;
 use League\Csv\SyntaxError;
 use League\Csv\Writer;
 use Psr\Log\LoggerInterface;
-use SprykerCommunity\Toolkit\Shared\Output\OutputAwareTrait;
-use SprykerCommunity\Toolkit\Translator\Config\ZedTranslatorConfig;
-use SprykerCommunity\Toolkit\Translator\Finder\TranslationFinderInterface;
-use SprykerCommunity\Toolkit\Translator\Finder\ZedTranslationFinder;
-use SprykerCommunity\Toolkit\Translator\TranslatorEngine\TranslatorEngineInterface;
+use SprykerCommunity\CliToolKit\Shared\Output\OutputAwareTrait;
+use SprykerCommunity\CliToolKit\Translator\Config\ZedTranslatorConfig;
+use SprykerCommunity\CliToolKit\Translator\Finder\TranslationFinderInterface;
+use SprykerCommunity\CliToolKit\Translator\Finder\ZedTranslationFinder;
+use SprykerCommunity\CliToolKit\Translator\TranslatorEngine\TranslatorEngineInterface;
 use Throwable;
 
 class ZedTranslator
@@ -42,12 +42,12 @@ class ZedTranslator
     protected const SOURCE_LOCALE = 'en_US';
 
     /**
-     * @var \SprykerCommunity\Toolkit\Translator\Config\ZedTranslatorConfig
+     * @var \SprykerCommunity\CliToolKit\Translator\Config\ZedTranslatorConfig
      */
     protected ZedTranslatorConfig $translatorConfig;
 
     /**
-     * @var \SprykerCommunity\Toolkit\Translator\Finder\TranslationFinderInterface
+     * @var \SprykerCommunity\CliToolKit\Translator\Finder\TranslationFinderInterface
      */
     protected TranslationFinderInterface $translationFinder;
 
@@ -56,7 +56,7 @@ class ZedTranslator
     private LoggerInterface $logger;
 
     /**
-     * @param \SprykerCommunity\Toolkit\Translator\TranslatorEngine\TranslatorEngineInterface $translator
+     * @param \SprykerCommunity\CliToolKit\Translator\TranslatorEngine\TranslatorEngineInterface $translator
      * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(TranslatorEngineInterface $translator, LoggerInterface $logger)
@@ -110,7 +110,7 @@ class ZedTranslator
     }
 
     /**
-     * @param array<string|int, \SprykerCommunity\Toolkit\Translator\TranslationRequest> $records
+     * @param array<string|int, \SprykerCommunity\CliToolKit\Translator\TranslationRequest> $records
      * @param string $targetLocale
      * @param string $directory
      *
@@ -122,6 +122,8 @@ class ZedTranslator
     {
         foreach ($records as $record) {
             $retry = 0;
+            $translatedRecord = null;
+
             do {
                 try {
                     $translation = $this->translator->translate(
@@ -157,6 +159,11 @@ class ZedTranslator
                     throw $e;
                 }
             } while ($retry < static::MAX_RETRIES);
+
+            if (!$translatedRecord) {
+                continue;
+            }
+
             $this->addTranslatedRecords($directory, [$translatedRecord]);
         }
     }
@@ -280,7 +287,7 @@ class ZedTranslator
      * @param string $targetLocale
      * @param string $moduleDirectory
      *
-     * @return array<\SprykerCommunity\Toolkit\Translator\TranslationRequest>
+     * @return array<\SprykerCommunity\CliToolKit\Translator\TranslationRequest>
      */
     protected function getRecordsToBeTranslated(
         string $baseDirectory,

@@ -7,11 +7,11 @@
 
 declare(strict_types=1);
 
-namespace SprykerCommunity\Toolkit\Translator\Commands;
+namespace SprykerCommunity\CliToolKit\Translator\Commands;
 
 use Monolog\Logger;
-use SprykerCommunity\Toolkit\Translator\Exception\TranslatorException;
-use SprykerCommunity\Toolkit\Translator\ZedTranslator;
+use SprykerCommunity\CliToolKit\Translator\Exception\TranslatorException;
+use SprykerCommunity\CliToolKit\Translator\ZedTranslator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
