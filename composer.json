@@ -1,6 +1,6 @@
 {
     "name": "spryker-community/cli-toolkit",
-    "description": "The Spryker Community Toolkit",
+    "description": "The Spryker Community CLI Toolkit",
     "type": "library",
     "license": "MIT",
     "prefer-stable": true,
