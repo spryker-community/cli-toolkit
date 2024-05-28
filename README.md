@@ -98,7 +98,7 @@ bin/cli-toolkit translation:yves:generate es_ES fr_FR --working-dir=../b2b-demo-
 ### Generate translations for the Spryker Zed backoffice
 
 ```bash
-bin/cli-toolkit translation:yves:generate
+bin/cli-toolkit translation:zed:generate
 ```
 
 #### Arguments
