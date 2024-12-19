@@ -32,6 +32,7 @@
 
 ```bash
 git clone https://github.com/spryker-community/cli-toolkit && cd cli-toolkit
+composer install
 bin/cli-toolkit
 ```
 
