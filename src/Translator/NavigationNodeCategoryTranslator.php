@@ -14,7 +14,7 @@ class NavigationNodeCategoryTranslator extends AbstractYvesTranslator
     /**
      * @return string
      */
-    protected function getType(): string
+    public function getType(): string
     {
         return 'navigation_node';
     }

@@ -187,7 +187,7 @@ abstract class AbstractYvesTranslator
     /**
      * @return string
      */
-    abstract protected function getType(): string;
+    abstract public function getType(): string;
 
     /**
      * @return string

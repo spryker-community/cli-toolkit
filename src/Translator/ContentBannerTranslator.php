@@ -14,7 +14,7 @@ class ContentBannerTranslator extends AbstractYvesTranslator
     /**
      * @return string
      */
-    protected function getType(): string
+    public function getType(): string
     {
         return 'content_banner';
     }
