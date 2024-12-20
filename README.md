@@ -96,6 +96,11 @@ bin/cli-toolkit translation:yves:generate es_ES --working-dir=../b2b-demo-market
 bin/cli-toolkit translation:yves:generate es_ES fr_FR --working-dir=../b2b-demo-marketplace --translation-engine=deepl
 ```
 
+3. Generate missing "category" and "product" translations Yves to Spanish from Spain (es_ES) with default engine.
+```bash
+bin/cli-toolkit translation:yves:generate es_ES --working-dir=../b2b-demo-marketplace --translator=category,product
+```
+
 ### Generate translations for the Spryker Zed backoffice
 
 ```bash

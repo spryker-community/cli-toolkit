@@ -10,6 +10,8 @@ declare(strict_types=1);
 namespace SprykerCommunity\CliToolKit\Translator\Commands;
 
 use Monolog\Logger;
+use RuntimeException;
+use SprykerCommunity\CliToolKit\Translator\AbstractYvesTranslator;
 use SprykerCommunity\CliToolKit\Translator\CategoryTranslator;
 use SprykerCommunity\CliToolKit\Translator\CmsBlockTranslator;
 use SprykerCommunity\CliToolKit\Translator\CmsPageTranslator;
@@ -28,10 +30,16 @@ use SprykerCommunity\CliToolKit\Translator\ProductSearchAttributeTranslator;
 use SprykerCommunity\CliToolKit\Translator\ProductSetTranslator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class YvesTranslationCommand extends AbstractTranslationCommand
 {
+    /**
+     * @var string
+     */
+    protected const TRANSLATOR = 'translator';
+
     /**
      * @return void
      */
@@ -41,7 +49,14 @@ class YvesTranslationCommand extends AbstractTranslationCommand
 
         $this
             ->setName('translation:yves:generate')
-            ->setDescription('Generate Yves translations to the specified target locale');
+            ->setDescription('Generate Yves translations to the specified target locale')
+            ->addOption(
+                static::TRANSLATOR,
+                't',
+                InputOption::VALUE_REQUIRED,
+                'Comma separated list of translators to use',
+                null,
+            );
     }
 
     /**
@@ -54,8 +69,14 @@ class YvesTranslationCommand extends AbstractTranslationCommand
     {
         parent::execute($input, $output);
 
+        $translators = $this->getTranslators();
+
+        $this->validateTranslatorOption($translators, $input);
+
+        $translators = $this->filterTranslatorsByTypes($translators, $this->getTranslatorFilterTypes($input));
+
         try {
-            foreach ($this->getTranslators() as $translator) {
+            foreach ($translators as $translator) {
                 $translator->setOutput($output);
                 $translator->translate($this->directory, $this->locales);
             }
@@ -106,5 +127,70 @@ class YvesTranslationCommand extends AbstractTranslationCommand
         }
 
         return $directory;
+    }
+
+    /**
+     * @param array<\SprykerCommunity\CliToolKit\Translator\AbstractYvesTranslator> $availableTranslators
+     * @param \Symfony\Component\Console\Input\InputInterface $input
+     *
+     * @throws \RuntimeException
+     *
+     * @return void
+     */
+    protected function validateTranslatorOption(array $availableTranslators, InputInterface $input): void
+    {
+        $translatorTypes = $this->getTranslatorFilterTypes($input);
+        $availableTranslatorTypes = array_map(
+            fn (AbstractYvesTranslator $translator): string => $translator->getType(),
+            $availableTranslators,
+        );
+
+        if (!count($translatorTypes)) {
+            return;
+        }
+
+        $invalidTranslatorTypes = array_diff($translatorTypes, $availableTranslatorTypes);
+
+        if (count($invalidTranslatorTypes)) {
+            throw new RuntimeException(sprintf(
+                'Invalid translator types "%s". Available types: "%s"',
+                implode(', ', $invalidTranslatorTypes),
+                implode(', ', $availableTranslatorTypes),
+            ));
+        }
+    }
+
+    /**
+     * @param array<\SprykerCommunity\CliToolKit\Translator\AbstractYvesTranslator> $translators
+     * @param array<string> $types
+     *
+     * @return array<\SprykerCommunity\CliToolKit\Translator\AbstractYvesTranslator>
+     */
+    protected function filterTranslatorsByTypes(array $translators, array $types): array
+    {
+        if (!count($types)) {
+            return $translators;
+        }
+
+        return array_filter(
+            $this->getTranslators(),
+            fn (AbstractYvesTranslator $translator): bool => in_array($translator->getType(), $types),
+        );
+    }
+
+    /**
+     * @param \Symfony\Component\Console\Input\InputInterface $input
+     *
+     * @return array<string>
+     */
+    protected function getTranslatorFilterTypes(InputInterface $input): array
+    {
+        $optionTranslators = $input->getOption(static::TRANSLATOR);
+
+        if (!$optionTranslators) {
+            return [];
+        }
+
+        return explode(',', $optionTranslators);
     }
 }

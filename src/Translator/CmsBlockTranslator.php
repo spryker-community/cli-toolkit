@@ -14,7 +14,7 @@ class CmsBlockTranslator extends AbstractYvesTranslator
     /**
      * @return string
      */
-    protected function getType(): string
+    public function getType(): string
     {
         return 'cms_block';
     }

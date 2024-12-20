@@ -14,7 +14,7 @@ class ProductDiscontinuedTranslator extends AbstractYvesTranslator
     /**
      * @return string
      */
-    protected function getType(): string
+    public function getType(): string
     {
         return 'product_discontinued';
     }
