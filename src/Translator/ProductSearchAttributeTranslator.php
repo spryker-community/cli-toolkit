@@ -14,7 +14,7 @@ class ProductSearchAttributeTranslator extends AbstractYvesTranslator
     /**
      * @return string
      */
-    protected function getType(): string
+    public function getType(): string
     {
         return 'product_search_attribute';
     }

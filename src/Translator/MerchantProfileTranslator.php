@@ -14,7 +14,7 @@ class MerchantProfileTranslator extends AbstractYvesTranslator
     /**
      * @return string
      */
-    protected function getType(): string
+    public function getType(): string
     {
         return 'merchant_profile';
     }
